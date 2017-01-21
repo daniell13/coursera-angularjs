@@ -1,0 +1,10 @@
+.border-warning {
+  color: red;
+  border-color: red;
+  border: 1px solid;
+}
+.border-success {
+  color: green;
+  border-color: green;
+  border: 1px solid;
+}
