@@ -14,9 +14,13 @@
         nid.found = [];
 
         nid.getMatchedItems = function (searchTerm) {
-            MenuSearchService.getMatchedMenuItems(searchTerm).then(function (foundedItems) {
-                nid.found = foundedItems;
-            });
+            if (searchTerm) {
+                MenuSearchService.getMatchedMenuItems(searchTerm).then(function (foundedItems) {
+                    nid.found = foundedItems;
+                });
+            } else {
+                nid.found = [];
+            }
         };
 
         nid.removeItem = function (index) {
@@ -36,14 +40,10 @@
                 var deffered = $q.defer();
 
                 var foundedItems = [];
-                if (searchTerm) {
-                    for (var i in result.data.menu_items) {
-                        if (result.data.menu_items[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
-                            foundedItems.push(result.data.menu_items[i]);
-                        }
+                for (var i in result.data.menu_items) {
+                    if (result.data.menu_items[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
+                        foundedItems.push(result.data.menu_items[i]);
                     }
-                } else {
-                    foundedItems = result.data.menu_items;
                 }
                 deffered.resolve(foundedItems);
 
