@@ -71,7 +71,7 @@
         var itemDirCtrl = this;
 
         itemDirCtrl.areItemsPresent = function() {
-            return !(itemDirCtrl.foundItems && itemDirCtrl.foundItems.length > 0);
+            return itemDirCtrl.foundItems !== undefined && itemDirCtrl.foundItems.length === 0;
         }
     }
 
