@@ -1,0 +1,115 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-10">
+            <form name="userDetailsForm" class="form-horizontal" novalidate>
+
+                <div class="form-group required">
+                    <label for="firstName" class="control-label col-sm-2 hidden-xs">First Name</label>
+                    <div class="col-sm-5">
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="firstName"
+                                id="firstName"
+                                placeholder="First Name"
+                                ng-model="signUp.userDetails.firstName"
+                                required>
+                    </div>
+                    <span class="col-sm-5" ng-if="userDetailsForm.firstName.$error.required && userDetailsForm.firstName.$touched">
+                        First Name is required.
+                    </span>
+                </div>
+
+                <div class="form-group required">
+                    <label for="lastName" class="control-label col-sm-2 hidden-xs">Last Name</label>
+                    <div class="col-sm-5">
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="lastName"
+                                id="lastName"
+                                placeholder="Last Name"
+                                ng-model="signUp.userDetails.lastName"
+                                required>
+                    </div>
+                    <span class="col-sm-5" ng-if="userDetailsForm.lastName.$error.required && userDetailsForm.lastName.$touched ">
+                        Last Name is required.
+                    </span>
+                </div>
+
+                <div class="form-group required">
+                    <label for="emailAddress" class="control-label col-sm-2 hidden-xs">Email Address</label>
+                    <div class="col-sm-5">
+                        <input
+                                type="email"
+                                class="form-control"
+                                name="emailAddress"
+                                id="emailAddress"
+                                placeholder="Email Address"
+                                ng-model="signUp.userDetails.emailAddress"
+                                required>
+                    </div>
+                    <span class="col-sm-5" ng-if="userDetailsForm.emailAddress.$error.required && userDetailsForm.emailAddress.$touched">
+                        Email Address is required.
+                    </span>
+                    <span class="col-sm-5" ng-if="userDetailsForm.emailAddress.$error.email && userDetailsForm.emailAddress.$touched">
+                        Email Address is invalid.
+                    </span>
+                </div>
+
+                <div class="form-group required">
+                    <label for="phoneNumber" class="control-label col-sm-2 hidden-xs">Phone Number</label>
+                    <div class="col-sm-5">
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="phoneNumber"
+                                id="phoneNumber"
+                                placeholder="Phone Number"
+                                ng-model="signUp.userDetails.phoneNumber"
+                                pattern="(\d{3})-(\d{3})-(\d{4})"
+                                required>
+                    </div>
+                    <span class="col-sm-5" ng-if="userDetailsForm.phoneNumber.$error.required && userDetailsForm.phoneNumber.$touched">
+                        Phone Number is required.
+                    </span>
+                    <span class="col-sm-5" ng-if="userDetailsForm.phoneNumber.$error.pattern && userDetailsForm.phoneNumber.$touched">
+                        Phone Number is invalid. It should have the following format: ***-***-****
+                    </span>
+                </div>
+
+                <div class="form-group required">
+                    <label for="favoriteMenu" class="control-label col-sm-2 hidden-xs">Favorite Menu</label>
+                    <div class="col-sm-5">
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="favoriteMenu"
+                                id="favoriteMenu"
+                                placeholder="Favorite Menu"
+                                ng-model="signUp.userDetails.favoriteMenu"
+                                ng-blur="signUp.existMenuItem()"
+                                required>
+                    </div>
+                    <span class="col-sm-5" ng-if="userDetailsForm.favoriteMenu.$error.required && userDetailsForm.favoriteMenu.$touched">
+                        Favorite Menu is required.
+                    </span>
+                    <span class="col-sm-5" ng-if="signUp.invalidMenuItem">
+                        No such menu number exists.
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <button
+                            type="button"
+                            class="btn btn-primary"
+                            ng-click="signUp.saveDetails()"
+                            ng-disabled="userDetailsForm.$invalid || !signUp.requestFinished || signUp.invalidMenuItem">
+                        Submit
+                    </button>
+                    <span class="text-success col-xs-offset-2" ng-if="signUp.savedSuccessfully">Your information has been saved.</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

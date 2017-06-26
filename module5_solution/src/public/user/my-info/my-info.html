@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-10">
+
+            <div class="col-sm-offset-5" ng-if="!myInfo.menuItem">
+                Not Signed Up Yet.
+                <a ui-sref="public.signup"><span>Sign up Now!</span></a>
+            </div>
+
+            <div class="row" ng-if="myInfo.menuItem">
+                <div class="col-sm-6">
+                    <div class="row text-center">
+                        Personal Information
+                    </div>
+                    <div class="row">
+                        First Name : {{ myInfo.userDetails.firstName }}
+                    </div>
+                    <div class="row">
+                        Last Name : {{ myInfo.userDetails.lastName }}
+                    </div>
+                    <div class="row">
+                        Email Address : {{ myInfo.userDetails.emailAddress }}
+                    </div>
+                    <div class="row">
+                        Phone Number : {{ myInfo.userDetails.phoneNumber }}
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <menu-item menu-item="myInfo.menuItem"></menu-item>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
